@@ -1,6 +1,6 @@
 apiVersion: v2
 name: order-service # 각 서비스 이름에 맞게 수정
-description: Green Eats Auth Service
+description: Green Eats Order Service
 type: application
 version: 1.0.0
 appVersion: "1.0.0"
