@@ -4,5 +4,5 @@ helm:
     value: harbor.greenart.n-e.kr/green-eats/order-service
     forcestring: true
   - name: image.tag
-    value: "24"
+    value: "26"
     forcestring: true
