@@ -1,0 +1,18 @@
+# values.yaml 예시
+replicaCount: 1
+
+image:
+  # Harbor 경로 입력
+  repository: harbor.greenart.n-e.kr/green-eats/store-service 
+  pullPolicy: IfNotPresent
+  # 이 tag 부분이 Image Updater에 의해 자동으로 업데이트됩니다.
+  tag: "16" 
+
+service:
+  type: ClusterIP
+  port: 8081 # 서비스 내부 포트
+
+# 환경 변수 등 필요한 설정 추가
+env:
+  - name: SPRING_PROFILES_ACTIVE
+    value: "prod"

@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: green-eats-store
+  namespace: argocd
+  annotations:
+    # 1. 감시할 이미지 설정 (별칭:이미지경로)
+    argocd-image-updater.argoproj.io/image-list: store=harbor.greenart.n-e.kr/green-eats/store-service
+    
+    # 2. 업데이트 전략: 빌드 시간이 가장 최신인 이미지를 선택
+    argocd-image-updater.argoproj.io/store.update-strategy: newest-build
+    
+    # 3. Git Write-back 설정: 강사님이 만드신 'git-creds' 시크릿 사용
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    
+    # 4. (선택) 커밋 메시지에 'ArgoCD Image Updater'가 수정했음을 명시
+    argocd-image-updater.argoproj.io/write-back-target: git-annotated-tag
+spec:
+  project: default
+  source:
+    # 강사님의 매니페스트 레포지토리 주소
+    repoURL: https://github.com/sbsteacher/2025-02-be-msa-green-eats-container-manifests-2.git
+    targetRevision: main
+    path: ./charts/store-service # 실제 Helm 차트나 YAML이 있는 경로
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app # 서비스가 실제로 돌아갈 네임스페이스
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

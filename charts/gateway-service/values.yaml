@@ -1,0 +1,20 @@
+# values.yaml 예시
+replicaCount: 1
+
+image:
+  # Harbor 경로 입력
+  repository: harbor.greenart.n-e.kr/green-eats/store-service 
+  pullPolicy: IfNotPresent
+  # 이 tag 부분이 Image Updater에 의해 자동으로 업데이트됩니다.
+  tag: "16" 
+
+service:
+  type: NodePort
+  port: 80 # 서비스 내부 포트
+  targetPort: 8080  # 컨테이너(Spring Boot) 포트
+  nodePort: 30890   # 외부에서 접속할 포트 (30000-32767 사이)
+
+# 환경 변수 등 필요한 설정 추가
+env:
+  - name: SPRING_PROFILES_ACTIVE
+    value: "prod"
