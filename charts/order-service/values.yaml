@@ -3,10 +3,10 @@ replicaCount: 1
 
 image:
   # Harbor 경로 입력
-  repository: harbor.greenart.n-e.kr/green-eats/gatewat-service 
+  repository: harbor.greenart.n-e.kr/green-eats/order-service 
   pullPolicy: IfNotPresent
   # 이 tag 부분이 Image Updater에 의해 자동으로 업데이트됩니다.
-  tag: "22" 
+  tag: "17" 
 
 service:
   type: ClusterIP
