@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: green-eats-gateway
+  name: gateway-service
   namespace: argocd
   annotations:
     # 1. 감시할 이미지 설정 (별칭:이미지경로)
