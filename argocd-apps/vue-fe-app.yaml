@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: green-eats-fe
+  namespace: argocd
+  annotations:
+    # Image Updater 설정
+    argocd-image-updater.argoproj.io/image-list: fe=harbor.greenart.n-e.kr/green-eats/vue-fe
+    argocd-image-updater.argoproj.io/fe.update-strategy: newest-build
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sbsteacher/2025-02-be-msa-green-eats-container-manifests-2.git
+    targetRevision: main
+    path: ./charts/vue-fe # 프론트엔드용 Helm 차트 경로
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
