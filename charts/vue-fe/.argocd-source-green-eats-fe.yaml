@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: image.name
+    value: harbor.greenart.n-e.kr/green-eats/vue-fe
+    forcestring: true
+  - name: image.tag
+    value: latest
+    forcestring: true
