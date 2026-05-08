@@ -4,5 +4,5 @@ helm:
     value: harbor.greenart.n-e.kr/green-eats/vue-fe
     forcestring: true
   - name: image.tag
-    value: latest
+    value: "6"
     forcestring: true
