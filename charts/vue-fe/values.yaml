@@ -6,7 +6,7 @@ image:
   repository: harbor.greenart.n-e.kr/green-eats/vue-fe 
   pullPolicy: IfNotPresent
   # 이 tag 부분이 Image Updater에 의해 자동으로 업데이트됩니다.
-  tag: "32" 
+  tag: "6" 
 
 service:
   type: NodePort
