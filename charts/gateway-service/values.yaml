@@ -12,7 +12,7 @@ service:
   type: NodePort
   port: 80 # 서비스 내부 포트
   targetPort: 8080  # 컨테이너(Spring Boot) 포트
-  nodePort: 30890   # 외부에서 접속할 포트 (30000-32767 사이)
+  nodePort: 30880   # 외부에서 접속할 포트 (30000-32767 사이)
 
 # 환경 변수 등 필요한 설정 추가
 env:
