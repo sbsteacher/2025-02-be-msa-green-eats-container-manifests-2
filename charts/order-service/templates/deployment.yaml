@@ -18,11 +18,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
-          # 필요한 경우 env 설정 추가
-          {{- with .Values.env }}
           envFrom:
             - secretRef:
                 name: app-secret
+          # 필요한 경우 env 설정 추가
+          {{- with .Values.env }}          
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
