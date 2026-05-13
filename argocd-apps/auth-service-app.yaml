@@ -12,6 +12,9 @@ metadata:
     
     # 3. Git Write-back 설정: 강사님이 만드신 'git-creds' 시크릿 사용
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+
+    # 4. 프로젝트가 비공개인 경우 설정
+    argocd-image-updater.argoproj.io/my-svc.pull-secret: secret:argocd/harbor-login
     
 spec:
   project: default
