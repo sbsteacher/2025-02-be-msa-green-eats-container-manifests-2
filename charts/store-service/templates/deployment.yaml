@@ -26,3 +26,12 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+
+          volumeMounts:
+            - name: firebase-volume
+              mountPath: /app/config/firebase
+              readOnly: true
+      volumes:
+        - name: firebase-volume
+          secret:
+            secretName: firebase-config
