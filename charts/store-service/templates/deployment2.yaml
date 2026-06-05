@@ -19,17 +19,27 @@ spec:
           ports:
             - containerPort: {{ .Values.service.targetPort }}
           envFrom:
-          - secretRef:
-              name: app-secret
+            - secretRef:
+                name: app-secret
           # 필요한 경우 env 설정 추가
           {{- with .Values.env }}          
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
+            - name: firebase-volume
+              mountPath: /app/config/firebase/firebase.json   # 스프링이 찾는 바로 그 주소!
+              subPath: firebase.json
+              readOnly: true
             - name: shared-download-storage
               mountPath: /home/download
       volumes:
-        - name: shared-download-storage
+      - name: firebase-volume
+        secret:
+          secretName: firebase-config   # 39번 서버에 실제로 생성한 Secret 이름과 일치해야 합니다.
+          items:
+          - key: firebase-secret.json          # Secret 내부에 기재된 데이터 Key 이름
+            path: firebase.json
+      - name: shared-download-storage
           persistentVolumeClaim:
             claimName: team-shared-pvc
